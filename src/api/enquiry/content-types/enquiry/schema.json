@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "enquiries",
+  "info": {
+    "singularName": "enquiry",
+    "pluralName": "enquiries",
+    "displayName": "Enquiry"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "form_type": {
+      "type": "enumeration",
+      "enum": [
+        "common",
+        "product_enquiry"
+      ]
+    }
+  }
+}
