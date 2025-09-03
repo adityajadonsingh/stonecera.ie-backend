@@ -495,6 +495,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
         }
       >;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image_alt_tag: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

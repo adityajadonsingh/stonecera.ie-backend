@@ -12,6 +12,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       name: item.name,
       slug: item.slug,
       image: item.image ? item.image.url : null,
+      image_alt_tag: item.image_alt_tag,
     }));
   },
 
@@ -37,6 +38,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       name: entity.name,
       slug: entity.slug,
       image: entity.image ? entity.image.url : null,
+      image_alt_tag: entity.image_alt_tag,
       footer_content: entity.footer_content,
       seo: {
         ...entity.seo,

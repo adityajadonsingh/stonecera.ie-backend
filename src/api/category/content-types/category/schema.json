@@ -18,6 +18,19 @@
       "type": "uid",
       "targetField": "name"
     },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "image_alt_tag": {
+      "type": "string"
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
@@ -38,16 +51,6 @@
     },
     "schema": {
       "type": "json"
-    },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
     },
     "blogs": {
       "type": "relation",
