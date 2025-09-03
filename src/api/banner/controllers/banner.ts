@@ -10,7 +10,8 @@ module.exports = createCoreController('api::banner.banner', ({ strapi }) => ({
       id: banner.id,
       title: banner.title,
       subtitle: banner.subtitle,
-      image: banner.image?.url || null,
+      image: `${process.env.MEDIA_URL!}${banner.image?.url}` || null,
+      image_alt_text: banner.image_alt_text,
     }));
   },
 }));
