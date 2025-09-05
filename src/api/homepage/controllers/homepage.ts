@@ -17,6 +17,7 @@ module.exports = createCoreController('api::homepage.homepage', ({ strapi }) => 
         seo_tags: {
           populate: ['meta_image', 'og_image'],
         },
+        testimonials: true,
       },
     });
 
@@ -42,16 +43,22 @@ module.exports = createCoreController('api::homepage.homepage', ({ strapi }) => 
       robots: seo.robots,
     };
 
-    // --- Clean banners ---
     const banners = (homepage.banners || []).map(banner => ({
       id: banner.id,
       title: banner.title,
       subtitle: banner.subtitle,
-      image: banner.image?.url || null,
+      image: `${process.env.MEDIA_URL!}${banner.image?.url}` || null,
+    }));
+
+    const testimonials = (homepage.testimonials || []).map(testimonial => ({
+      id: testimonial.id,
+      name: testimonial.name,
+      testimonial: testimonial.testimonial,
     }));
 
     return {
       banners,
+      testimonials,
       seo: cleanedSeo,
     };
   },

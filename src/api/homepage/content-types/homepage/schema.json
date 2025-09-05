@@ -20,6 +20,11 @@
       "type": "component",
       "component": "seo.meta",
       "repeatable": false
+    },
+    "testimonials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::testimonial.testimonial"
     }
   }
 }
