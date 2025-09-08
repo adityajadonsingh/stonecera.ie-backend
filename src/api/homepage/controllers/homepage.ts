@@ -43,11 +43,16 @@ module.exports = createCoreController('api::homepage.homepage', ({ strapi }) => 
       robots: seo.robots,
     };
 
+    const getFullUrl = (url) => {
+      if (!url) return null;
+      return url.startsWith('http') ? url : `${process.env.MEDIA_URL}${url}`;
+    };
+
     const banners = (homepage.banners || []).map(banner => ({
       id: banner.id,
       title: banner.title,
       subtitle: banner.subtitle,
-      image: `${process.env.MEDIA_URL!}${banner.image?.url}` || null,
+      image: getFullUrl(banner.image?.url),
     }));
 
     const testimonials = (homepage.testimonials || []).map(testimonial => ({
