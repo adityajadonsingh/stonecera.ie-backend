@@ -2,39 +2,37 @@
  * homepage controller
  */
 
-import { factories } from '@strapi/strapi'
+import { factories } from "@strapi/strapi";
+import { getFullUrl } from "../../../utils/getFullUrl";
 
 const { createCoreController } = factories;
 
-module.exports = createCoreController('api::homepage.homepage', ({ strapi }) => ({
+export default createCoreController("api::homepage.homepage", ({ strapi }) => ({
   async find(ctx) {
-    // Fetch homepage with banners + seo
-    const entity = await strapi.entityService.findMany('api::homepage.homepage', {
+    const entity = await strapi.entityService.findMany("api::homepage.homepage", {
       populate: {
         banners: {
-          populate: ['image'],
+          populate: ["image"],
         },
         seo_tags: {
-          populate: ['meta_image', 'og_image'],
+          populate: ["meta_image", "og_image"],
         },
         testimonials: true,
       },
     });
 
-    // Extract homepage (usually single type, so entity[0])
     const homepage = Array.isArray(entity) ? entity[0] : entity;
 
-    // --- Auto-fill OG fields ---
     const seo = homepage.seo_tags || {};
     const cleanedSeo = {
       meta_title: seo.meta_title,
       meta_description: seo.meta_description,
       meta_keyword: seo.meta_keyword,
-      meta_image: seo.meta_image?.url || null,
+      meta_image: getFullUrl(seo.meta_image?.url),
 
       og_title: seo.og_title || seo.meta_title,
       og_description: seo.og_description || seo.meta_description,
-      og_image: seo.og_image?.url || seo.meta_image?.url || null,
+      og_image: getFullUrl(seo.og_image?.url) || getFullUrl(seo.meta_image?.url),
 
       twitter_title: seo.twitter_title || seo.meta_title,
       twitter_description: seo.twitter_description || seo.meta_description,
@@ -43,14 +41,14 @@ module.exports = createCoreController('api::homepage.homepage', ({ strapi }) => 
       robots: seo.robots,
     };
 
-    const banners = (homepage.banners || []).map(banner => ({
+    const banners = (homepage.banners || []).map((banner: any) => ({
       id: banner.id,
       title: banner.title,
       subtitle: banner.subtitle,
-      image: banner.image?.url || null,
+      image: getFullUrl(banner.image?.url),
     }));
 
-    const testimonials = (homepage.testimonials || []).map(testimonial => ({
+    const testimonials = (homepage.testimonials || []).map((testimonial: any) => ({
       id: testimonial.id,
       name: testimonial.name,
       testimonial: testimonial.testimonial,
