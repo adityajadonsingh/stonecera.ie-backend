@@ -47,7 +47,7 @@ module.exports = createCoreController('api::homepage.homepage', ({ strapi }) => 
       id: banner.id,
       title: banner.title,
       subtitle: banner.subtitle,
-      image: `${process.env.MEDIA_URL!}${banner.image?.url}` || null,
+      image: banner.image?.url || null,
     }));
 
     const testimonials = (homepage.testimonials || []).map(testimonial => ({
