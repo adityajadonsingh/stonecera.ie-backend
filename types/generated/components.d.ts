@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface PageBannerPageBanner extends Struct.ComponentSchema {
+  collectionName: 'components_page_banner_page_banners';
+  info: {
+    displayName: 'Page Banner';
+  };
+  attributes: {
+    alt_tag: Schema.Attribute.String;
+    bannerImg: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    pageName: Schema.Attribute.String;
+  };
+}
+
 export interface SeoMeta extends Struct.ComponentSchema {
   collectionName: 'components_seo_metas';
   info: {
@@ -25,6 +37,7 @@ export interface SeoMeta extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'page-banner.page-banner': PageBannerPageBanner;
       'seo.meta': SeoMeta;
     }
   }

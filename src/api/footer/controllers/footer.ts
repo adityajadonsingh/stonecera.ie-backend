@@ -17,12 +17,12 @@ module.exports = createCoreController('api::footer.footer', ({ strapi }) => ({
       return ctx.notFound();
     }
 
-    // --- Return only the required fields ---
     return {
       phone_number1: footer.phone_number1,
       phone_number2: footer.phone_number2,
       email1: footer.email1,
       email2: footer.email2,
+      address: footer.address,
       footer_content: footer.footer_content,
     };
   },

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_page_banner_page_banners",
+  "info": {
+    "displayName": "Page Banner"
+  },
+  "options": {},
+  "attributes": {
+    "pageName": {
+      "type": "string"
+    },
+    "bannerImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "alt_tag": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

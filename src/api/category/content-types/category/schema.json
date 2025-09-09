@@ -37,6 +37,11 @@
       "target": "api::product.product",
       "mappedBy": "category"
     },
+    "pageBanner": {
+      "type": "component",
+      "component": "page-banner.page-banner",
+      "repeatable": false
+    },
     "seo": {
       "type": "component",
       "component": "seo.meta",

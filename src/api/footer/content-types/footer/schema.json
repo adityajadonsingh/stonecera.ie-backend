@@ -23,6 +23,9 @@
     "email2": {
       "type": "email"
     },
+    "address": {
+      "type": "text"
+    },
     "footer_content": {
       "type": "text"
     }

@@ -15,16 +15,6 @@
       "type": "component",
       "component": "seo.meta",
       "repeatable": false
-    },
-    "page_banner": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
     }
   }
 }

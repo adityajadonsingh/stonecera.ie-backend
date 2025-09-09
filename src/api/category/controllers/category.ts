@@ -1,10 +1,12 @@
 import { factories } from '@strapi/strapi';
+import { getFullUrl } from "../../../utils/getFullUrl";
 
 export default factories.createCoreController('api::category.category', ({ strapi }) => ({
 
   async find(ctx) {
     const entities = await strapi.entityService.findMany('api::category.category', {
       populate: ['image'],
+      
     });
 
     return entities.map((item: any) => ({
@@ -24,21 +26,27 @@ export default factories.createCoreController('api::category.category', ({ strap
       populate: {
         image: true,
         seo: {
-          populate: ['og_image', 'meta_image', 'twitter_image'], // deep populate media fields inside seo
+          populate: ['og_image', 'meta_image', 'twitter_image'], 
         },
+        pageBanner: { populate: ["bannerImg"] },
       },
     });
 
     if (!entity) {
       return ctx.notFound();
     }
-
+        const pageBanner = {
+          pageName: entity.pageBanner?.pageName,
+          alt_tag: entity.pageBanner?.alt_tag,
+          bannerImg: getFullUrl(entity.pageBanner?.bannerImg?.url),
+        };
     return {
       id: entity.id,
       name: entity.name,
       slug: entity.slug,
       image: entity.image ? `${process.env.MEDIA_URL!}${entity.image.url}` : null,
       image_alt_tag: entity.image_alt_tag,
+      pageBanner,
       footer_content: entity.footer_content,
       seo: {
         ...entity.seo,

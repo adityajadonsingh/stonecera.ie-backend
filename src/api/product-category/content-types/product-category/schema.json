@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "product_categories",
+  "info": {
+    "singularName": "product-category",
+    "pluralName": "product-categories",
+    "displayName": "Product Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageBanner": {
+      "type": "component",
+      "component": "page-banner.page-banner",
+      "repeatable": false
+    },
+    "footerHeading": {
+      "type": "string"
+    },
+    "footerContent": {
+      "type": "text"
+    },
+    "footerImg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "footerImgAlt": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.meta",
+      "repeatable": false
+    }
+  }
+}
