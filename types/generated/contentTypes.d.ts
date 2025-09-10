@@ -563,7 +563,9 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     email1: Schema.Attribute.Email;
     email2: Schema.Attribute.Email;
-    footer_content: Schema.Attribute.Text;
+    facebook_link: Schema.Attribute.String;
+    instagram_link: Schema.Attribute.String;
+    linkedin_link: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -572,7 +574,9 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     phone_number1: Schema.Attribute.String;
     phone_number2: Schema.Attribute.String;
+    pinterest_link: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    twitter_link: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

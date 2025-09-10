@@ -26,8 +26,20 @@
     "address": {
       "type": "text"
     },
-    "footer_content": {
-      "type": "text"
+    "instagram_link": {
+      "type": "string"
+    },
+    "facebook_link": {
+      "type": "string"
+    },
+    "twitter_link": {
+      "type": "string"
+    },
+    "linkedin_link": {
+      "type": "string"
+    },
+    "pinterest_link": {
+      "type": "string"
     }
   }
 }

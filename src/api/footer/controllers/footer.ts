@@ -23,7 +23,11 @@ module.exports = createCoreController('api::footer.footer', ({ strapi }) => ({
       email1: footer.email1,
       email2: footer.email2,
       address: footer.address,
-      footer_content: footer.footer_content,
+      instagram_link: footer.instagram_link,
+      facebook_link: footer.facebook_link,
+      linkedin_link: footer.linkedin_link,
+      twitter_link: footer.twitter_link,
+      pinterest_link: footer.pinterest_link
     };
   },
 }));
