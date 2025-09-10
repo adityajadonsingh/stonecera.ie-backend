@@ -18,11 +18,28 @@ export default createCoreController("api::homepage.homepage", ({ strapi }) => ({
           populate: ["meta_image", "og_image"],
         },
         testimonials: true,
+        home_about_img: true,
+        home_contact_img: true,
       },
     });
 
     const homepage = Array.isArray(entity) ? entity[0] : entity;
-
+    const categorySlider = {
+      title: homepage.category_slider_title,
+      subtitle: homepage.category_slider_subtitle, 
+    }
+    const aboutContent = {
+      title: homepage.home_about_title,
+      description: homepage.home_about_description,
+      image: getFullUrl(homepage.home_about_img?.url),
+      alt_tag: homepage.home_about_img_altTag 
+    }
+    const contactContent = {
+      title: homepage.home_contact_title,
+      sub_heading: homepage.home_contact_sub,
+      image: getFullUrl(homepage.home_contact_img?.url),
+      alt_tag: homepage.home_contact_img_altTag 
+    }
     const seo = homepage.seo_tags || {};
     const cleanedSeo = {
       meta_title: seo.meta_title,
@@ -56,6 +73,9 @@ export default createCoreController("api::homepage.homepage", ({ strapi }) => ({
 
     return {
       banners,
+      categorySlider,
+      aboutContent,
+      contactContent,
       testimonials,
       seo: cleanedSeo,
     };

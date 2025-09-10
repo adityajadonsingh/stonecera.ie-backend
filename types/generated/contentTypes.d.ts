@@ -591,9 +591,23 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   };
   attributes: {
     banners: Schema.Attribute.Relation<'oneToMany', 'api::banner.banner'>;
+    category_slider_subtitle: Schema.Attribute.String;
+    category_slider_title: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    home_about_description: Schema.Attribute.Text;
+    home_about_img: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    home_about_img_altTag: Schema.Attribute.String;
+    home_about_title: Schema.Attribute.String;
+    home_contact_img: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    home_contact_img_altTag: Schema.Attribute.String;
+    home_contact_sub: Schema.Attribute.String;
+    home_contact_title: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

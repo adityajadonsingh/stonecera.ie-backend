@@ -16,15 +16,59 @@
       "relation": "oneToMany",
       "target": "api::banner.banner"
     },
-    "seo_tags": {
-      "type": "component",
-      "component": "seo.meta",
-      "repeatable": false
+    "category_slider_title": {
+      "type": "string"
+    },
+    "category_slider_subtitle": {
+      "type": "string"
+    },
+    "home_about_title": {
+      "type": "string"
+    },
+    "home_about_description": {
+      "type": "text"
+    },
+    "home_about_img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "home_about_img_altTag": {
+      "type": "string"
     },
     "testimonials": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::testimonial.testimonial"
+    },
+    "home_contact_title": {
+      "type": "string"
+    },
+    "home_contact_sub": {
+      "type": "string"
+    },
+    "home_contact_img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "home_contact_img_altTag": {
+      "type": "string"
+    },
+    "seo_tags": {
+      "type": "component",
+      "component": "seo.meta",
+      "repeatable": false
     }
   }
 }

@@ -6,7 +6,7 @@ export default factories.createCoreController('api::category.category', ({ strap
   async find(ctx) {
     const entities = await strapi.entityService.findMany('api::category.category', {
       populate: ['image'],
-      
+
     });
 
     return entities.map((item: any) => ({
@@ -26,20 +26,34 @@ export default factories.createCoreController('api::category.category', ({ strap
       populate: {
         image: true,
         seo: {
-          populate: ['og_image', 'meta_image', 'twitter_image'], 
+          populate: ['og_image', 'meta_image', 'twitter_image'],
         },
         pageBanner: { populate: ["bannerImg"] },
+        products: {
+          populate: ["images"], // 👈 populate images for products
+        },
       },
     });
 
     if (!entity) {
       return ctx.notFound();
     }
-        const pageBanner = {
-          pageName: entity.pageBanner?.pageName,
-          alt_tag: entity.pageBanner?.alt_tag,
-          bannerImg: getFullUrl(entity.pageBanner?.bannerImg?.url),
-        };
+
+    const pageBanner = {
+      pageName: entity.pageBanner?.pageName,
+      alt_tag: entity.pageBanner?.alt_tag,
+      bannerImg: getFullUrl(entity.pageBanner?.bannerImg?.url),
+    };
+
+    // Build products array
+    const products = (entity.products || []).map((product: any) => ({
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      image: product.images?.[0] ? getFullUrl(product.images[0].url) : null, // 👈 only first image
+      image_alt_tag: product.images?.[0]?.alternativeText || null,
+    }));
+
     return {
       id: entity.id,
       name: entity.name,
@@ -54,10 +68,11 @@ export default factories.createCoreController('api::category.category', ({ strap
         meta_image: entity.seo?.meta_image ? `${process.env.MEDIA_URL!}${entity.seo.meta_image.url}` : null,
         twitter_image: entity.seo?.twitter_image ? `${process.env.MEDIA_URL!}${entity.seo.twitter_image.url}` : null,
       },
-      schema : entity.schema,
-      updatedAt : entity.updatedAt,
-      
+      schema: entity.schema,
+      updatedAt: entity.updatedAt,
+      products,
     };
-  },
+  }
+
 
 }));
