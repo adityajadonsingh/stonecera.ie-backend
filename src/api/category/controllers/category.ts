@@ -58,6 +58,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       id: entity.id,
       name: entity.name,
       slug: entity.slug,
+      short_description: entity.short_description,
       image: entity.image ? `${process.env.MEDIA_URL!}${entity.image.url}` : null,
       image_alt_tag: entity.image_alt_tag,
       pageBanner,

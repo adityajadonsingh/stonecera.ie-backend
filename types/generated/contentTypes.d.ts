@@ -506,6 +506,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     schema: Schema.Attribute.JSON;
     seo: Schema.Attribute.Component<'seo.meta', false>;
+    short_description: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

@@ -31,6 +31,9 @@
     "image_alt_tag": {
       "type": "string"
     },
+    "short_description": {
+      "type": "text"
+    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
