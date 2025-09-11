@@ -65,6 +65,13 @@
     "home_contact_img_altTag": {
       "type": "string"
     },
+    "footer_content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
     "seo_tags": {
       "type": "component",
       "component": "seo.meta",

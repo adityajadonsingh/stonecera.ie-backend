@@ -1,5 +1,5 @@
 import { factories } from '@strapi/strapi';
-
+import { getFullUrl } from "../../../utils/getFullUrl";
 export default factories.createCoreController('api::product.product', ({ strapi }) => ({
 
   // GET /api/products
@@ -25,9 +25,9 @@ export default factories.createCoreController('api::product.product', ({ strapi 
       slug: item.slug,
       category: item.category
         ? {
-            name: item.category.name,
-            slug: item.category.slug,
-          }
+          name: item.category.name,
+          slug: item.category.slug,
+        }
         : null,
       image: item.images?.length > 0 ? item.images[0].url : null,
     }));
@@ -53,15 +53,32 @@ export default factories.createCoreController('api::product.product', ({ strapi 
     }
 
     return {
-      ...entity,
-      images: entity.images?.map((img: any) => img.url) || [],
-      seo: {
-        ...entity.seo,
-        og_image: entity.seo?.og_image ? entity.seo.og_image.url : null,
-        meta_image: entity.seo?.meta_image ? entity.seo.meta_image.url : null,
-        twitter_image: entity.seo?.twitter_image ? entity.seo.twitter_image.url : null,
-      },
+      id: entity.id,
+      name: entity.name,
+      description: entity.description,
+      slug: entity.slug,
+      updatedAt: entity.updatedAt,
+      category: entity.category
+        ? {
+          name: entity.category.name,
+          slug: entity.category.slug,
+        }
+        : null,
+      images: entity.images?.map((img: any) => ({
+        url: getFullUrl(img.url),
+        alt: img.alternativeText || null,
+        width: img.width,
+        height: img.height,
+      })) || [],
+      seo: entity.seo
+        ? {
+          og_image: entity.seo?.og_image ? getFullUrl(entity.seo.og_image.url) : null,
+          meta_image: entity.seo?.meta_image ? getFullUrl(entity.seo.meta_image.url) : null,
+          twitter_image: entity.seo?.twitter_image ? getFullUrl(entity.seo.twitter_image.url) : null,
+        }
+        : null,
     };
-  },
+  }
+
 
 }));

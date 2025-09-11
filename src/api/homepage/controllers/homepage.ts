@@ -77,6 +77,7 @@ export default createCoreController("api::homepage.homepage", ({ strapi }) => ({
       aboutContent,
       contactContent,
       testimonials,
+      footerContent: homepage.footer_content,
       seo: cleanedSeo,
     };
   },
