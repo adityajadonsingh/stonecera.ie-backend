@@ -45,6 +45,7 @@ export default factories.createCoreController('api::product.product', ({ strapi 
         seo: {
           populate: ['og_image', 'meta_image', 'twitter_image'],
         },
+        attributes: true,
       },
     });
 
@@ -70,6 +71,7 @@ export default factories.createCoreController('api::product.product', ({ strapi 
         width: img.width,
         height: img.height,
       })) || [],
+      attributes: entity.attributes,
       seo: entity.seo
         ? {
           og_image: entity.seo?.og_image ? getFullUrl(entity.seo.og_image.url) : null,

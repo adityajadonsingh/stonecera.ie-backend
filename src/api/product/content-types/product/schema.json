@@ -55,6 +55,11 @@
       "options": {
         "preset": "defaultHtml"
       }
+    },
+    "attributes": {
+      "type": "component",
+      "component": "product-details.product-attributes",
+      "repeatable": true
     }
   }
 }

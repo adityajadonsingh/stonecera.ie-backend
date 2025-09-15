@@ -12,6 +12,18 @@ export interface PageBannerPageBanner extends Struct.ComponentSchema {
   };
 }
 
+export interface ProductDetailsProductAttributes
+  extends Struct.ComponentSchema {
+  collectionName: 'components_product_details_product_attributes';
+  info: {
+    displayName: 'Product Attributes';
+  };
+  attributes: {
+    attribute_name: Schema.Attribute.String;
+    attribute_value: Schema.Attribute.Text;
+  };
+}
+
 export interface SeoMeta extends Struct.ComponentSchema {
   collectionName: 'components_seo_metas';
   info: {
@@ -38,6 +50,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'page-banner.page-banner': PageBannerPageBanner;
+      'product-details.product-attributes': ProductDetailsProductAttributes;
       'seo.meta': SeoMeta;
     }
   }
