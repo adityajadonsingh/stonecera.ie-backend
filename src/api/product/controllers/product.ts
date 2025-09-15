@@ -25,11 +25,12 @@ export default factories.createCoreController('api::product.product', ({ strapi 
       slug: item.slug,
       category: item.category
         ? {
-          name: item.category.name,
+          name: item.category.name, 
           slug: item.category.slug,
         }
         : null,
-      image: item.images?.length > 0 ? item.images[0].url : null,
+      image: item.images?.length > 0 ? getFullUrl(item.images[0].url) : null,
+      image_alt_tag: item.images[0].alternativeText || null,
     }));
   },
 
