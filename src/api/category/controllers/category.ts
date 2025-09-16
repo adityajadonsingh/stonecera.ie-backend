@@ -30,7 +30,7 @@ export default factories.createCoreController('api::category.category', ({ strap
         },
         pageBanner: { populate: ["bannerImg"] },
         products: {
-          populate: ["images"], // 👈 populate images for products
+          populate: ["images", "category"],
         },
       },
     });
@@ -50,7 +50,13 @@ export default factories.createCoreController('api::category.category', ({ strap
       id: product.id,
       name: product.name,
       slug: product.slug,
-      image: product.images?.[0] ? getFullUrl(product.images[0].url) : null, // 👈 only first image
+      category: product.category
+    ? {
+        name: product.category.name,
+        slug: product.category.slug,
+      }
+    : null,
+      image: product.images?.[0] ? getFullUrl(product.images[0].url) : null,
       image_alt_tag: product.images?.[0]?.alternativeText || null,
     }));
 

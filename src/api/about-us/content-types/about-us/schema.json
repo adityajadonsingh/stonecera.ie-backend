@@ -11,6 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "pageBanner": {
+      "type": "component",
+      "component": "page-banner.page-banner",
+      "repeatable": false
+    },
     "seo": {
       "type": "component",
       "component": "seo.meta",
