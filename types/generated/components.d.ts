@@ -1,5 +1,19 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BrochurePdf extends Struct.ComponentSchema {
+  collectionName: 'components_brochure_pdfs';
+  info: {
+    displayName: 'pdf';
+  };
+  attributes: {
+    brochure_name: Schema.Attribute.String;
+    pdf: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
+    thumbnail_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+  };
+}
+
 export interface PageBannerPageBanner extends Struct.ComponentSchema {
   collectionName: 'components_page_banner_page_banners';
   info: {
@@ -49,6 +63,7 @@ export interface SeoMeta extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'brochure.pdf': BrochurePdf;
       'page-banner.page-banner': PageBannerPageBanner;
       'product-details.product-attributes': ProductDetailsProductAttributes;
       'seo.meta': SeoMeta;

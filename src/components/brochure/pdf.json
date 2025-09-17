@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_brochure_pdfs",
+  "info": {
+    "displayName": "pdf"
+  },
+  "options": {},
+  "attributes": {
+    "brochure_name": {
+      "type": "string"
+    },
+    "pdf": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "thumbnail_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

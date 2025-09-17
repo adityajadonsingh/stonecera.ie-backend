@@ -471,6 +471,36 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBrochureBrochure extends Struct.SingleTypeSchema {
+  collectionName: 'brochures';
+  info: {
+    displayName: 'Brochure';
+    pluralName: 'brochures';
+    singularName: 'brochure';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    brochures: Schema.Attribute.Component<'brochure.pdf', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::brochure.brochure'
+    > &
+      Schema.Attribute.Private;
+    pageBanner: Schema.Attribute.Component<'page-banner.page-banner', false>;
+    publishedAt: Schema.Attribute.DateTime;
+    seo_tags: Schema.Attribute.Component<'seo.meta', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -1340,6 +1370,7 @@ declare module '@strapi/strapi' {
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::banner.banner': ApiBannerBanner;
       'api::blog.blog': ApiBlogBlog;
+      'api::brochure.brochure': ApiBrochureBrochure;
       'api::category.category': ApiCategoryCategory;
       'api::enquiry.enquiry': ApiEnquiryEnquiry;
       'api::footer.footer': ApiFooterFooter;

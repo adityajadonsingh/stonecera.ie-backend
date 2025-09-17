@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "brochures",
+  "info": {
+    "singularName": "brochure",
+    "pluralName": "brochures",
+    "displayName": "Brochure"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageBanner": {
+      "type": "component",
+      "component": "page-banner.page-banner",
+      "repeatable": false
+    },
+    "brochures": {
+      "type": "component",
+      "component": "brochure.pdf",
+      "repeatable": true
+    },
+    "seo_tags": {
+      "type": "component",
+      "component": "seo.meta",
+      "repeatable": false
+    }
+  }
+}
