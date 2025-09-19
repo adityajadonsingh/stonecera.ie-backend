@@ -6,14 +6,13 @@ export default factories.createCoreController('api::category.category', ({ strap
   async find(ctx) {
     const entities = await strapi.entityService.findMany('api::category.category', {
       populate: ['image'],
-
     });
 
     return entities.map((item: any) => ({
       id: item.id,
       name: item.name,
       slug: item.slug,
-      image: item.image ? `${process.env.MEDIA_URL!}${item.image.url}` : null,
+      image: item.image ? getFullUrl(item.image.url) : null,
       image_alt_tag: item.image_alt_tag,
       updatedAt: item.updatedAt,
     }));
@@ -52,11 +51,11 @@ export default factories.createCoreController('api::category.category', ({ strap
       name: product.name,
       slug: product.slug,
       category: product.category
-    ? {
-        name: product.category.name,
-        slug: product.category.slug,
-      }
-    : null,
+        ? {
+            name: product.category.name,
+            slug: product.category.slug,
+          }
+        : null,
       image: product.images?.[0] ? getFullUrl(product.images[0].url) : null,
       image_alt_tag: product.images?.[0]?.alternativeText || null,
     }));
@@ -66,21 +65,20 @@ export default factories.createCoreController('api::category.category', ({ strap
       name: entity.name,
       slug: entity.slug,
       short_description: entity.short_description,
-      image: entity.image ? `${process.env.MEDIA_URL!}${entity.image.url}` : null,
+      image: entity.image ? getFullUrl(entity.image.url) : null,
       image_alt_tag: entity.image_alt_tag,
       pageBanner,
       footer_content: entity.footer_content,
       seo: {
         ...entity.seo,
-        og_image: entity.seo?.og_image ? `${process.env.MEDIA_URL!}${entity.seo.og_image.url}` : null,
-        meta_image: entity.seo?.meta_image ? `${process.env.MEDIA_URL!}${entity.seo.meta_image.url}` : null,
-        twitter_image: entity.seo?.twitter_image ? `${process.env.MEDIA_URL!}${entity.seo.twitter_image.url}` : null,
+        og_image: entity.seo?.og_image ? getFullUrl(entity.seo.og_image.url) : null,
+        meta_image: entity.seo?.meta_image ? getFullUrl(entity.seo.meta_image.url) : null,
+        twitter_image: entity.seo?.twitter_image ? getFullUrl(entity.seo.twitter_image.url) : null,
       },
       schema: entity.schema,
       updatedAt: entity.updatedAt,
       products,
     };
   }
-
 
 }));

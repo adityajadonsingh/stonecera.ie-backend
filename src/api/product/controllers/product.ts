@@ -1,5 +1,6 @@
 import { factories } from '@strapi/strapi';
 import { getFullUrl } from "../../../utils/getFullUrl";
+
 export default factories.createCoreController('api::product.product', ({ strapi }) => ({
 
   // GET /api/products
@@ -30,7 +31,7 @@ export default factories.createCoreController('api::product.product', ({ strapi 
         }
         : null,
       image: item.images?.length > 0 ? getFullUrl(item.images[0].url) : null,
-      image_alt_tag: item.images[0].alternativeText || null,
+      image_alt_tag: item.images[0]?.alternativeText || null,
       updatedAt: item.updatedAt,
     }));
   },
@@ -74,15 +75,13 @@ export default factories.createCoreController('api::product.product', ({ strapi 
         height: img.height,
       })) || [],
       attributes: entity.attributes,
-      seo: entity.seo
-        ? {
-          og_image: entity.seo?.og_image ? getFullUrl(entity.seo.og_image.url) : null,
-          meta_image: entity.seo?.meta_image ? getFullUrl(entity.seo.meta_image.url) : null,
-          twitter_image: entity.seo?.twitter_image ? getFullUrl(entity.seo.twitter_image.url) : null,
-        }
-        : null,
+      seo: {
+        ...entity.seo,
+        og_image: entity.seo?.og_image ? getFullUrl(entity.seo.og_image.url) : null,
+        meta_image: entity.seo?.meta_image ? getFullUrl(entity.seo.meta_image.url) : null,
+        twitter_image: entity.seo?.twitter_image ? getFullUrl(entity.seo.twitter_image.url) : null,
+      },
     };
   }
-
 
 }));
