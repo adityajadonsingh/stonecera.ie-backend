@@ -15,6 +15,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       slug: item.slug,
       image: item.image ? `${process.env.MEDIA_URL!}${item.image.url}` : null,
       image_alt_tag: item.image_alt_tag,
+      updatedAt: item.updatedAt,
     }));
   },
 

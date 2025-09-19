@@ -31,6 +31,7 @@ export default factories.createCoreController('api::product.product', ({ strapi 
         : null,
       image: item.images?.length > 0 ? getFullUrl(item.images[0].url) : null,
       image_alt_tag: item.images[0].alternativeText || null,
+      updatedAt: item.updatedAt,
     }));
   },
 
