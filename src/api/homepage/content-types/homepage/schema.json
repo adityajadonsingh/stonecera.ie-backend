@@ -76,6 +76,9 @@
       "type": "component",
       "component": "seo.meta",
       "repeatable": false
+    },
+    "schema": {
+      "type": "json"
     }
   }
 }

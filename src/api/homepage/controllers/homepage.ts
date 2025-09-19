@@ -79,6 +79,7 @@ export default createCoreController("api::homepage.homepage", ({ strapi }) => ({
       testimonials,
       footerContent: homepage.footer_content,
       seo: cleanedSeo,
+      schema: homepage.schema
     };
   },
 }));

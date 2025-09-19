@@ -545,6 +545,34 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContactUsContactUs extends Struct.SingleTypeSchema {
+  collectionName: 'contact_uses';
+  info: {
+    displayName: 'Contact Us';
+    pluralName: 'contact-uses';
+    singularName: 'contact-us';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-us.contact-us'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'seo.meta', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEnquiryEnquiry extends Struct.CollectionTypeSchema {
   collectionName: 'enquiries';
   info: {
@@ -658,6 +686,7 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    schema: Schema.Attribute.JSON;
     seo_tags: Schema.Attribute.Component<'seo.meta', false>;
     testimonials: Schema.Attribute.Relation<
       'oneToMany',
@@ -790,6 +819,34 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     schema: Schema.Attribute.JSON;
     seo: Schema.Attribute.Component<'seo.meta', false>;
     slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProductsPageProductsPage extends Struct.SingleTypeSchema {
+  collectionName: 'products_pages';
+  info: {
+    displayName: 'Products Page';
+    pluralName: 'products-pages';
+    singularName: 'products-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::products-page.products-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'seo.meta', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1372,12 +1429,14 @@ declare module '@strapi/strapi' {
       'api::blog.blog': ApiBlogBlog;
       'api::brochure.brochure': ApiBrochureBrochure;
       'api::category.category': ApiCategoryCategory;
+      'api::contact-us.contact-us': ApiContactUsContactUs;
       'api::enquiry.enquiry': ApiEnquiryEnquiry;
       'api::footer.footer': ApiFooterFooter;
       'api::homepage.homepage': ApiHomepageHomepage;
       'api::legal-page.legal-page': ApiLegalPageLegalPage;
       'api::product-category.product-category': ApiProductCategoryProductCategory;
       'api::product.product': ApiProductProduct;
+      'api::products-page.products-page': ApiProductsPageProductsPage;
       'api::review.review': ApiReviewReview;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;
