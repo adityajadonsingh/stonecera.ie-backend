@@ -51,6 +51,9 @@
     },
     "robots": {
       "type": "string"
+    },
+    "schemas": {
+      "type": "json"
     }
   },
   "config": {}

@@ -55,6 +55,7 @@ export interface SeoMeta extends Struct.ComponentSchema {
     og_image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     og_title: Schema.Attribute.String;
     robots: Schema.Attribute.String;
+    schemas: Schema.Attribute.JSON;
     twitter_description: Schema.Attribute.Text;
     twitter_title: Schema.Attribute.String;
   };

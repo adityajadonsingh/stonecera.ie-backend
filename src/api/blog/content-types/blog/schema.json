@@ -14,10 +14,14 @@
     "title": {
       "type": "string"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
     "short_description": {
       "type": "string"
     },
-    "blog_image": {
+    "cover_image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
